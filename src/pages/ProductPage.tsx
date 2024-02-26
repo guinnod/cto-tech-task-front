@@ -1,7 +1,7 @@
 import { useParams } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
-import { getProduct } from "../api";
-import { Product } from "../components/Product";
+import { Product } from "../components/product/Product";
+import { getProduct } from "../lib/api";
 import { IProduct } from "../types";
 
 interface ProductPageProps {}

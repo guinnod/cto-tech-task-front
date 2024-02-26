@@ -1,7 +1,7 @@
 import { Link, Outlet } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
-import { getProducts } from "../api";
-import { IProduct } from "../types";
+import { getProducts } from "../../lib/api";
+import { IProduct } from "../../lib/types";
 import { Product } from "./Product";
 
 interface ProductsGridProps {

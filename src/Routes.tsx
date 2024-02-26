@@ -5,9 +5,9 @@ import {
     createRouter,
 } from "@tanstack/react-router";
 import App from "./App";
-import { ProductsGrid } from "./components/ProductsGrid";
-import { Protected } from "./components/Protected";
-import { Root } from "./components/Root";
+import { ProductsGrid } from "./components/product/ProductsGrid";
+import { Protected } from "./components/shared/Protected";
+import { Root } from "./components/shared/Root";
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ProductPage } from "./pages/ProductPage";
