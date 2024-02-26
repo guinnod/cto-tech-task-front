@@ -8,7 +8,7 @@ interface ProductsGridProps {
     products: IProduct[];
 }
 
-export const ProductsGrid: FC<ProductsGridProps> = ({ products: ok }) => {
+export const ProductsGrid: FC<ProductsGridProps> = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(true);
     const fetchProducts = async () => {
