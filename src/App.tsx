@@ -5,9 +5,7 @@ function App() {
     return (
         <div>
             <div>App</div>
-            <Link href="/products" to={"/products"}>
-                Products
-            </Link>
+            <Link to={"/home/products"}>Products</Link>
         </div>
     );
 }

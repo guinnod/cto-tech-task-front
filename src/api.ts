@@ -8,7 +8,7 @@ interface FetchRequestInit {
 }
 
 const CacheMap = new Map<string, any>();
-console.log("init cahce map", CacheMap);
+
 export const revalidateCache = (endpoint: string) => {
     CacheMap.delete(endpoint);
     fetchAPI(endpoint);
