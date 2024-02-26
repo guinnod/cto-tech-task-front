@@ -1,13 +1,15 @@
 import {
-    RouterProvider as TanstackRouterProvider,
+    RouterProvider,
     createRootRoute,
     createRoute,
     createRouter,
 } from "@tanstack/react-router";
 import App from "./App";
 import { ProductsGrid } from "./components/ProductsGrid";
+import { Root } from "./components/Root";
+import { ProductPage } from "./pages/ProductPage";
 
-const rootRoute = createRootRoute({});
+const rootRoute = createRootRoute({ component: Root });
 
 const indexRoute = createRoute({
     getParentRoute: () => rootRoute,
@@ -19,14 +21,24 @@ const indexRoute = createRoute({
 
 const productsRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: "/products",
+    path: "products",
     component: ProductsGrid,
 });
 
-const routeTree = rootRoute.addChildren([productsRoute, indexRoute]);
+const productDetailsRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: "products/$productId",
+    component: ProductPage,
+});
+
+const routeTree = rootRoute.addChildren([
+    indexRoute,
+    productsRoute,
+    productDetailsRoute,
+]);
 
 const router = createRouter({ routeTree });
 
-export const RouterProvider = () => {
-    return <TanstackRouterProvider router={router} />;
+export const Routes = () => {
+    return <RouterProvider router={router} />;
 };

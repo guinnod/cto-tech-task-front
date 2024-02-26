@@ -1,3 +1,4 @@
+import { Link, Outlet } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
 import { getProducts } from "../api";
 import { IProduct } from "../types";
@@ -15,7 +16,6 @@ export const ProductsGrid: FC<ProductsGridProps> = ({ products: ok }) => {
         try {
             const productsResponse = await getProducts();
             setProducts(productsResponse);
-            console.log(productsResponse);
         } catch (error) {
             console.error("Error fetching products", error);
         } finally {
@@ -31,8 +31,11 @@ export const ProductsGrid: FC<ProductsGridProps> = ({ products: ok }) => {
     }
     return (
         <div>
+            <Outlet />
             {products.map((product) => (
-                <Product key={product.id} product={product} />
+                <Link key={product.id} to={`/products/${product.id}`}>
+                    <Product product={product} />
+                </Link>
             ))}
         </div>
     );

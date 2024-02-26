@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "./Routes.tsx";
+import { Routes } from "./Routes.tsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-        <RouterProvider />
+        <Routes />
     </React.StrictMode>
 );

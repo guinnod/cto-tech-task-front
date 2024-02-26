@@ -7,12 +7,25 @@ interface FetchRequestInit {
     body?: any;
 }
 
+const CacheMap = new Map<string, any>();
+console.log("init cahce map", CacheMap);
+export const revalidateCache = (endpoint: string) => {
+    CacheMap.delete(endpoint);
+    fetchAPI(endpoint);
+};
+
 const fetchAPI = async <T = any>(
     endpoint: string,
     init: FetchRequestInit = { method: "GET", body: null }
 ): Promise<T> => {
     const { method, body } = init;
     try {
+        if (method === "GET") {
+            const cachedData = CacheMap.get(endpoint);
+            if (cachedData) {
+                return cachedData;
+            }
+        }
         const response = await fetch(`${baseURL}/${endpoint}`, {
             method,
             body: body && JSON.stringify(body),
@@ -21,6 +34,9 @@ const fetchAPI = async <T = any>(
             throw new Error(response.statusText);
         }
         const data = await response.json();
+        if (method === "GET") {
+            CacheMap.set(endpoint, data);
+        }
         return data as T;
     } catch (error) {
         console.error("Error fetching data", error);
