@@ -8,10 +8,8 @@ export interface IProduct {
 }
 
 export interface ICart {
-    id: number;
-    userId: number;
-    date: string;
-    products: { productId: number; quantity: number }[];
+    productId: number;
+    quantity: number[];
 }
 
 export interface IUser {

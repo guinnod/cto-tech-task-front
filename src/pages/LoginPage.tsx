@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { Button } from "../components/ui/Button";
+import { Input } from "../components/ui/Input";
 
 interface LoginPageProps {}
 
@@ -8,12 +10,18 @@ export const LoginPage: FC<LoginPageProps> = ({}) => {
         console.log("submit");
     };
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={onSubmit}>
-                <input type="text" placeholder="username" />
-                <input type="password" placeholder="password" />
-                <button type="submit">Login</button>
+        <div className="mx-auto mt-16 w-full max-w-lg">
+            <form
+                onSubmit={onSubmit}
+                className="space-y-1 rounded border p-8 shadow-m"
+            >
+                <Input type="text" placeholder="username" helperText="help" />
+                <Input
+                    type="password"
+                    placeholder="password"
+                    helperText="help"
+                />
+                <Button type="submit">Login</Button>
             </form>
         </div>
     );

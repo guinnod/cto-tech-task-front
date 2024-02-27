@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
+import { Loading } from "../ui/Loading";
 
 interface ProtectedProps {}
 
@@ -20,12 +21,7 @@ export const Protected: FC<ProtectedProps> = ({}) => {
         }
     }, []);
     if (loading) {
-        return <h1>Loading...</h1>;
+        return <Loading />;
     }
-    return (
-        <div>
-            <h1>Protected</h1>
-            <Outlet />
-        </div>
-    );
+    return <Outlet />;
 };
