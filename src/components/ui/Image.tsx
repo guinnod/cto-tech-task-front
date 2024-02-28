@@ -1,14 +1,10 @@
 import { FC, ImgHTMLAttributes, useState } from "react";
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-    width: number;
-    height: number;
     wrapperClassName?: string;
 }
 
 export const Image: FC<ImageProps> = ({
-    width,
-    height,
     className,
     wrapperClassName,
     ...props
@@ -24,7 +20,7 @@ export const Image: FC<ImageProps> = ({
             <img
                 loading="lazy"
                 onLoad={() => setLoading(false)}
-                className={`object-contain object-center h-[${height}px] w-[${width}px] ${
+                className={`object-contain object-center ${
                     className ? className : ""
                 }`}
                 {...props}

@@ -4,13 +4,15 @@ import {
     createRoute,
     createRouter,
 } from "@tanstack/react-router";
-import App from "./App";
-import { ProductsGrid } from "./components/product/ProductsGrid";
 import { Protected } from "./components/shared/Protected";
 import { Root } from "./components/shared/Root";
-import { LoginPage } from "./pages/LoginPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { ProductPage } from "./pages/ProductPage";
+import {
+    CartPage,
+    LoginPage,
+    NotFoundPage,
+    ProductPage,
+    ProductsPage,
+} from "./pages";
 
 const rootRoute = createRootRoute({
     component: Root,
@@ -20,9 +22,13 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "/",
-    component: function Index() {
-        return <App />;
-    },
+    component: ProductsPage,
+});
+
+const productDetailsRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: "products/$productId",
+    component: ProductPage,
 });
 
 const loginRoute = createRoute({
@@ -37,22 +43,17 @@ const protectedRoute = createRoute({
     component: Protected,
 });
 
-const productsRoute = createRoute({
+const cartRoute = createRoute({
     getParentRoute: () => protectedRoute,
-    path: "products",
-    component: ProductsGrid,
-});
-
-const productDetailsRoute = createRoute({
-    getParentRoute: () => protectedRoute,
-    path: "products/$productId",
-    component: ProductPage,
+    path: "/",
+    component: CartPage,
 });
 
 const routeTree = rootRoute.addChildren([
     indexRoute,
     loginRoute,
-    protectedRoute.addChildren([productsRoute, productDetailsRoute]),
+    productDetailsRoute,
+    protectedRoute.addChildren([cartRoute]),
 ]);
 
 const router = createRouter({ routeTree });

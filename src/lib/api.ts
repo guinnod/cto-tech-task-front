@@ -9,9 +9,9 @@ interface FetchRequestInit {
 
 const CacheMap = new Map<string, any>();
 
-export const revalidateCache = (endpoint: string) => {
+export const revalidateCache = async <T = any>(endpoint: string) => {
     CacheMap.delete(endpoint);
-    fetchAPI(endpoint);
+    return await fetchAPI<T>(endpoint);
 };
 
 const fetchAPI = async <T = any>(
