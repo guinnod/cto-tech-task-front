@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { login } from "../lib/api";
 import { TOKEN_KEY } from "../lib/config";
@@ -20,7 +21,7 @@ export const useLogin = () => {
         errors: {},
     });
     const touched = useRef(false);
-
+    const navigate = useNavigate();
     function handleChange(
         e: React.ChangeEvent<HTMLInputElement>,
         field: "username" | "password"
@@ -68,6 +69,7 @@ export const useLogin = () => {
         try {
             const jwt = await login(username, password);
             localStorage.setItem(TOKEN_KEY, jwt.token);
+            navigate({ to: "/in/profile" });
         } catch (error) {
             alert("Invalid username or password!");
         } finally {

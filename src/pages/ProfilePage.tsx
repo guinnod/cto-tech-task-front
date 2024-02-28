@@ -1,9 +1,11 @@
 import { useNavigate } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
 import { userIcon } from "../assets";
+import { Button } from "../components/ui/Button";
 import { Image } from "../components/ui/Image";
 import { Loading } from "../components/ui/Loading";
 import { getUser } from "../lib/api";
+import { TOKEN_KEY } from "../lib/config";
 import { IUser } from "../lib/types";
 
 interface ProfilePageProps {}
@@ -24,6 +26,10 @@ export const ProfilePage: FC<ProfilePageProps> = ({}) => {
             setLoading(false);
         }
     };
+    function logout() {
+        localStorage.removeItem(TOKEN_KEY);
+        navigate({ to: "/login" });
+    }
     useEffect(() => {
         fetchUser();
     }, []);
@@ -55,6 +61,9 @@ export const ProfilePage: FC<ProfilePageProps> = ({}) => {
                         <div className="mt-8 space-y-6 text-sm text-neutral-500">
                             <p>{user?.email}</p>
                             <p>{user?.phone}</p>
+                        </div>
+                        <div className="mt-8">
+                            <Button onClick={logout}>Log out</Button>
                         </div>
                     </div>
                 </div>

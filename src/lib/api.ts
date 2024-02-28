@@ -28,6 +28,9 @@ const fetchAPI = async <T = any>(
         const response = await fetch(`${BASE_URL}/${endpoint}`, {
             method,
             body: body && JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
         if (!response.ok) {
             throw new Error(response.statusText);
