@@ -28,7 +28,7 @@ export const ProductsPage: FC<ProductsPageProps> = () => {
         return <ProductsSkeleton />;
     }
     return (
-        <div>
+        <div className="py-8">
             <ProductsGrid products={products} />
         </div>
     );

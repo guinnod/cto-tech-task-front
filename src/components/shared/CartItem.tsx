@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { FC } from "react";
+import { useCart } from "../../CartContext";
 import minusIcon from "../../assets/minus.svg";
 import plusIcon from "../../assets/plus.svg";
 import { ICart } from "../../lib/types";
@@ -11,8 +12,18 @@ interface CartItemProps {
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
     const { product } = item;
+    const { dispatch } = useCart();
+    const decreaseQuantity = () => {
+        dispatch("decrease", item.product.id);
+    };
+    const increaseQuantity = () => {
+        dispatch("increase", item.product.id);
+    };
+    const removeItem = () => {
+        dispatch("remove", item.product.id);
+    };
     return (
-        <div className="flex py-4 max-[330px]:flex-col max-[330px]:items-center">
+        <div className="flex py-4 max-sm:flex-col max-sm:items-center">
             <div className="aspect-square h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-neutral-50 sm:h-32 sm:w-32">
                 <Image
                     src={product.image}
@@ -25,7 +36,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
             <div className="relative flex flex-1 flex-col justify-between p-4 py-2">
                 <div className="flex justify-between justify-items-start gap-4 flex-wrap">
                     <div>
-                        <Link to={`/product/${product.id}`}>
+                        <Link to={`/products/${product.id}`}>
                             <h2 className="font-medium text-neutral-700">
                                 {product.title}
                             </h2>
@@ -46,6 +57,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                             role="button"
                             width={25}
                             height={25}
+                            onClick={decreaseQuantity}
                         />
                         {item.quantity}
                         <img
@@ -54,9 +66,10 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                             role="button"
                             width={25}
                             height={25}
+                            onClick={increaseQuantity}
                         />
                     </div>
-                    <Button>Delete</Button>
+                    <Button onClick={removeItem}>Delete</Button>
                 </div>
             </div>
         </div>

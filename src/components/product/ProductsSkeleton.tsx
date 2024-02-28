@@ -17,12 +17,12 @@ export const ProductsSkeleton: FC<ProductsSkeletonProps> = ({}) => {
                             height={300}
                             className="w-[min(300px,calc(100vw-1rem))] aspect-square h-auto"
                         />
-                        <div className="mt-2">
+                        <div className="mt-2 animate-pulse">
                             <div className="h-[20px] w-full flex mb-1 gap-2">
-                                <p className="mt-1 h-[20px] text-neutral-500 animate-pulse bg-gray-500 rounded w-10/12"></p>
-                                <h3 className="mt-1 h-[20px] grow font-semibold text-neutral-900 line-clamp-2 animate-pulse bg-gray-500 rounded"></h3>
+                                <p className="mt-1 h-[20px] text-neutral-500 bg-gray-500 rounded w-10/12"></p>
+                                <h3 className="mt-1 h-[20px] grow font-semibold text-neutral-900 line-clamp-2 bg-gray-500 rounded"></h3>
                             </div>
-                            <p className="mt-2 h-[40px] w-full font-medium text-neutral-900 text-nowrap animate-pulse bg-gray-500 rounded"></p>
+                            <p className="mt-2 h-[40px] w-full font-medium text-neutral-900 text-nowrap bg-gray-500 rounded"></p>
                         </div>
                     </div>
                 </li>

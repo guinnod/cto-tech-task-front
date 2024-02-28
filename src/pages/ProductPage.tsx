@@ -1,5 +1,6 @@
 import { useParams } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
+import { useCart } from "../CartContext";
 import { Button } from "../components/ui/Button";
 import { Image } from "../components/ui/Image";
 import { Loading } from "../components/ui/Loading";
@@ -25,9 +26,14 @@ export const ProductPage: FC<ProductPageProps> = ({}) => {
     useEffect(() => {
         fetchProduct();
     }, []);
+    const { dispatch } = useCart();
+    function addProduct() {
+        dispatch("add", product);
+    }
     if (loading) {
         return <Loading />;
     }
+
     return (
         <section className="mx-auto grid max-w-7xl p-8">
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8">
@@ -46,7 +52,7 @@ export const ProductPage: FC<ProductPageProps> = ({}) => {
                         </h1>
                         <p className="mb-8 text-sm ">{product?.price} $</p>
                         <div className="mt-8">
-                            <Button>Add to cart</Button>
+                            <Button onClick={addProduct}>Add to cart</Button>
                         </div>
 
                         <div className="mt-8 space-y-6 text-sm text-neutral-500">

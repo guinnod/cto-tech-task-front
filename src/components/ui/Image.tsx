@@ -25,10 +25,10 @@ export const Image: FC<ImageProps> = ({
                 }`}
                 {...props}
                 // disable cache to show the loading state
-                src={`${props.src}?${Date.now()}`}
+                // src={`${props.src}?${Date.now()}`}
             />
             {loading && (
-                <div className="absolute top-0 left-0 w-full h-full animate-pulse bg-gray-500" />
+                <div className="absolute top-0 left-0 w-full h-full animate-pulse bg-gray-500 z-10" />
             )}
         </div>
     );
