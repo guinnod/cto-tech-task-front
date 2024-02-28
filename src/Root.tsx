@@ -1,7 +1,7 @@
 import { Outlet } from "@tanstack/react-router";
 import { FC } from "react";
-import { CartProvider } from "../../CartContext";
-import { Header } from "./Header";
+import { Header } from "./components/shared/Header";
+import { CartProvider } from "./context/CartContext";
 interface RootProps {}
 
 export const Root: FC<RootProps> = ({}) => {

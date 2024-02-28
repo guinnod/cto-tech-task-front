@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { useCart } from "../CartContext";
-import { CartEmpty } from "../components/shared/CartEmpty";
-import { CartItem } from "../components/shared/CartItem";
+import { CartEmpty } from "../components/cart/CartEmpty";
+import { CartItem } from "../components/cart/CartItem";
 import { Button } from "../components/ui/Button";
+import { useCart } from "../context/CartContext";
 import { calculateTotalAmount } from "../lib/utils";
 
 interface CartPageProps {}

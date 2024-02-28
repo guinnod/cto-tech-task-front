@@ -4,14 +4,15 @@ import {
     createRoute,
     createRouter,
 } from "@tanstack/react-router";
-import { Protected } from "./components/shared/Protected";
-import { Root } from "./components/shared/Root";
+import { Root } from "./Root";
+import { Protected } from "./context/Protected";
 import {
     CartPage,
     LoginPage,
     NotFoundPage,
     ProductPage,
     ProductsPage,
+    ProfilePage,
 } from "./pages";
 
 const rootRoute = createRootRoute({
@@ -39,21 +40,28 @@ const loginRoute = createRoute({
 
 const protectedRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: "home",
+    path: "in",
     component: Protected,
 });
 
 const cartRoute = createRoute({
-    getParentRoute: () => protectedRoute,
-    path: "/",
+    getParentRoute: () => rootRoute,
+    path: "cart",
     component: CartPage,
+});
+
+const profileRoute = createRoute({
+    getParentRoute: () => protectedRoute,
+    path: "/profile",
+    component: ProfilePage,
 });
 
 const routeTree = rootRoute.addChildren([
     indexRoute,
     loginRoute,
     productDetailsRoute,
-    protectedRoute.addChildren([cartRoute]),
+    cartRoute,
+    protectedRoute.addChildren([profileRoute]),
 ]);
 
 const router = createRouter({ routeTree });

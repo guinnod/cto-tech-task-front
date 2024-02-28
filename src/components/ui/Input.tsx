@@ -1,6 +1,5 @@
 import { FC, InputHTMLAttributes, useState } from "react";
-import eyeOffIcon from "../../assets/eye-off.svg";
-import eyeIcon from "../../assets/eye.svg";
+import { eyeIcon, eyeOffIcon } from "../../assets";
 import { Image } from "./Image";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     helperText?: string;
@@ -43,11 +42,14 @@ export const Input: FC<InputProps> = ({
                     </div>
                 )}
             </div>
-            {helperText && (
-                <div className="w-full text-red-600 text-sm mb-2">
-                    {helperText}
-                </div>
-            )}
+
+            <div
+                className={`w-full text-red-600 text-sm mb-2 h-5 ${
+                    !helperText && "opacity-0"
+                }`}
+            >
+                {helperText}
+            </div>
         </div>
     );
 };

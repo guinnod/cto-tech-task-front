@@ -1,9 +1,10 @@
 import { useParams } from "@tanstack/react-router";
 import { FC, useEffect, useState } from "react";
-import { useCart } from "../CartContext";
+import { NotFoundPage } from ".";
 import { Button } from "../components/ui/Button";
 import { Image } from "../components/ui/Image";
 import { Loading } from "../components/ui/Loading";
+import { useCart } from "../context/CartContext";
 import { getProduct } from "../lib/api";
 import { IProduct } from "../lib/types";
 
@@ -13,22 +14,30 @@ export const ProductPage: FC<ProductPageProps> = ({}) => {
     const { productId } = useParams({ strict: false });
     const [product, setProduct] = useState<IProduct>();
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    const { dispatch } = useCart();
+    function addProduct() {
+        dispatch("add", product);
+        alert("Product added to cart");
+    }
+
     const fetchProduct = async () => {
         try {
             const productsResponse = await getProduct(productId);
             setProduct(productsResponse);
+            setLoading(false);
         } catch (error) {
             console.error("Error fetching product", error);
-        } finally {
-            setLoading(false);
+            setError(true);
         }
     };
     useEffect(() => {
         fetchProduct();
     }, []);
-    const { dispatch } = useCart();
-    function addProduct() {
-        dispatch("add", product);
+
+    if (error) {
+        return <NotFoundPage />;
     }
     if (loading) {
         return <Loading />;

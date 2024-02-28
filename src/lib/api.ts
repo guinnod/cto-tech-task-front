@@ -1,6 +1,5 @@
-import { IProduct } from "./types";
-
-const baseURL = "https://fakestoreapi.com";
+import { BASE_URL } from "./config";
+import { IProduct, IUser } from "./types";
 
 interface FetchRequestInit {
     method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -26,7 +25,7 @@ const fetchAPI = async <T = any>(
                 return cachedData;
             }
         }
-        const response = await fetch(`${baseURL}/${endpoint}`, {
+        const response = await fetch(`${BASE_URL}/${endpoint}`, {
             method,
             body: body && JSON.stringify(body),
         });
@@ -77,4 +76,8 @@ export const login = (username: string, password: string) => {
         method: "POST",
         body: { username, password },
     });
+};
+
+export const getUser = () => {
+    return fetchAPI<IUser>("users/1");
 };

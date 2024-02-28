@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import cartService from "./lib/cart";
-import { ICart } from "./lib/types";
+import cartService from "../lib/cart";
+import { ICart } from "../lib/types";
 
 type CartServiceActions = "add" | "remove" | "increase" | "decrease";
 
@@ -41,6 +41,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
             default:
                 break;
         }
+
         localStorage.setItem("cart", JSON.stringify(cartService.items));
         setItems([...cartService.items]);
         return items;

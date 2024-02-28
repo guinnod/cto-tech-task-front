@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { FC } from "react";
-import { useCart } from "../../CartContext";
-import minusIcon from "../../assets/minus.svg";
-import plusIcon from "../../assets/plus.svg";
+import { minusIcon, plusIcon } from "../../assets";
+import { useCart } from "../../context/CartContext";
 import { ICart } from "../../lib/types";
+import { calculateTotalAmount } from "../../lib/utils";
 import { Button } from "../ui/Button";
 import { Image } from "../ui/Image";
 interface CartItemProps {
@@ -46,7 +46,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                         </p>
                     </div>
                     <p className="text-right font-semibold text-neutral-900 text-nowrap">
-                        {product.price} $
+                        {calculateTotalAmount([item])} $
                     </p>
                 </div>
                 <div className="flex justify-between">

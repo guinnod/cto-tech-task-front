@@ -1,5 +1,6 @@
 import { FC } from "react";
-import spin from "../../assets/spin.svg";
+import { spin } from "../../assets";
+
 interface LoadingProps {}
 
 export const Loading: FC<LoadingProps> = ({}) => {
