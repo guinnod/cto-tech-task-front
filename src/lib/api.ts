@@ -63,7 +63,7 @@ export const getProducts = (filters: ProductsFilters = { sort: "asc" }) => {
         endpoint += `limit=${limit}`;
     }
 
-    return fetchAPI<IProduct[]>("products");
+    return fetchAPI<IProduct[]>(endpoint);
 };
 
 export const getProduct = (id: number) => {

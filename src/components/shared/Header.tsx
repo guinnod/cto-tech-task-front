@@ -3,6 +3,7 @@ import { FC } from "react";
 import { userIcon } from "../../assets";
 import { CartLink } from "../cart/CartLink";
 import { Logo } from "./Logo";
+import { Menu } from "./Menu";
 interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = ({}) => {
@@ -11,6 +12,7 @@ export const Header: FC<HeaderProps> = ({}) => {
             <div className="mx-auto max-w-7xl px-3 sm:px-8">
                 <div className="flex h-16 justify-between gap-4 md:gap-8">
                     <Logo />
+                    <Menu />
                     <div className="flex items-center gap-8">
                         <Link to="/in/profile">
                             <img

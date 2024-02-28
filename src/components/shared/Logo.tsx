@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { FC } from "react";
 
 interface LogoProps {}
@@ -6,9 +5,9 @@ interface LogoProps {}
 export const Logo: FC<LogoProps> = ({}) => {
     return (
         <div className="flex items-center font-bold">
-            <Link aria-label="homepage" to="/">
+            <a aria-label="homepage" href="/">
                 FAKE STORE
-            </Link>
+            </a>
         </div>
     );
 };
