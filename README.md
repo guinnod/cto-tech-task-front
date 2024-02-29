@@ -47,6 +47,24 @@ To run this project locally, follow these steps:
 
 4. Open your browser and navigate to `http://localhost:5173` to view the application.
 
+## Running using Docker
+
+To run this project locally with Docker, follow these steps:
+
+1. Navigate to the project's root directory and run:
+
+    ```bash
+    docker build -t fakestore-app .
+    ```
+
+2. Start the application by running:
+
+    ```bash
+    docker run -p 8080:8080 fakestore-app
+    ```
+
+3. To stop the application, use docker ps to find your container's ID and then docker stop <container-id> to stop it.
+
 ## Conclusion
 
 This project is a testament to building efficient, modern web applications using a minimalist approach. By carefully selecting technologies and implementing features from the ground up, we demonstrate a deep understanding of web development principles, prioritizing performance and user experience.
