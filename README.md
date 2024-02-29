@@ -5,7 +5,9 @@ This project is a React.js application designed to simulate an online store expe
 ## Features
 
 -   **Product Listing:** Users can browse and filter by category a list of products fetched from the FakeStore API.
--   **User Authentication:** A simulated login feature to demonstrate user authentication.
+-   **User Authentication:** A simulated login feature to demonstrate user authentication. fakestoreapi provides the following credentials:
+    -   **Username:** `johnd`
+    -   **Password:** `m38rmF$`
 -   **Shopping Cart:** Users can add products to a shopping cart. Cart data is persisted in localStorage for session continuity.
 
 ## Technical Stack
